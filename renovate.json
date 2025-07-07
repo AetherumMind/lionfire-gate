@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "config:base",
+    "schedule:automergeDaily",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":automergeMinor",
+    "abandonments:recommended"
+  ],
+  "dependencyDashboardTitle": "📦 Renovate Dependency Dashboard",
+  "labels": ["renovate", "dependencies"],
+  "rebaseWhen": "behind-base-branch",
+  "timezone": "America/Los_Angeles",
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["eslint", "prettier", "babel"],
+      "groupName": "Lint & Formatting Tools",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": "Major Updates",
+      "enabled": true,
+      "automerge": false
+    }
+  ]
+}
